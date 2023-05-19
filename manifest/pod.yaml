@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: gke-datastore
+spec:
+  containers:
+  - name: gke-datastore
+    image: nginx:1.14.2
+    env:
+    - name: PROJECT_ID
+      value: "study-work-387200"
+    ports:
+    - containerPort: 80
