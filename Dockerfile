@@ -1,10 +1,14 @@
 # Start from the latest golang base image
-FROM golang:1.19
+FROM golang:1.19 as builder
 WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -o main .
+RUN CGO_ENABLED=0 GOOS=linux go build -a -installsuffix cgo -o main .
 
-# Command to run the executable
-CMD ["./main"]
+# Final stage
+FROM alpine:latest
+RUN apk --no-cache add ca-certificates
+WORKDIR /root/
+COPY --from=builder /app/main .
+CMD ["./main"] 
