@@ -3,11 +3,13 @@ kind: Pod
 metadata:
   name: gke-datastore
 spec:
+  serviceAccountName: sa-k8snovice
   containers:
   - name: gke-datastore
-    image: nginx:1.14.2
+    image: ghcr.io/keisukesakasai/work-gke-datastore:latest
     env:
     - name: PROJECT_ID
       value: "study-work-387200"
     ports:
     - containerPort: 80
+    
