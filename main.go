@@ -21,7 +21,9 @@ func main() {
 	fmt.Println("Hello, Kubernetes Novice!")
 
 	ctx := context.Background()
+
 	projectID := os.Getenv("PROJECT_ID")
+	fmt.Println("projectID: ", projectID)
 
 	client, err := datastore.NewClient(ctx, projectID)
 	if err != nil {
@@ -49,4 +51,6 @@ func main() {
 	}
 
 	fmt.Printf("Fetched entity: %v", e)
+
+	time.Sleep(10000000 * time.Second)
 }
