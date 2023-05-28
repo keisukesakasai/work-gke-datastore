@@ -51,6 +51,8 @@ func main() {
 
 		fmt.Printf("Fetched entity: %v", e)
 
+		client.Close()
+
 		time.Sleep(5 * time.Second)
 	}
 }
